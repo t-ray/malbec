@@ -1,0 +1,54 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 1
+      author: t-ray
+      changes:
+
+      - createTable:
+          tableName: installations
+          columns:
+          - column:
+              name: id
+              type: int
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                nullable: false
+          - column:
+              name: name
+              type: varchar(50)
+              constraints:
+                nullable: false
+          - column:
+              name: path
+              type: varchar(255)
+              constraints:
+                nullable: false
+          - column:
+              name: version
+              type: varchar(50)
+              constraints:
+                nullable: true
+
+      - createTable:
+          tableName: repositories
+          columns:
+          - column:
+              name: id
+              type: int
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                nullable: false
+          - column:
+              name: name
+              type: varchar(50)
+              constraints:
+                nullable: false
+          - column:
+              name: url
+              type: varchar(255)
+              constraints:
+                nullable: false
+

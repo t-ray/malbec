@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    #url: jdbc:h2:mem:testdb2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    #url: jdbc:mysql://localhost:3306/malbec?createDatabaseIfNotExist=true
+    url: ${database.url}
+    username: root
+    password: root
+    platform: mysql
+
+liquibase:
+  changeLog: classpath:changelog.yml

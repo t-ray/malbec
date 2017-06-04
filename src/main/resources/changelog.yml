@@ -32,7 +32,7 @@ databaseChangeLog:
                 nullable: true
 
       - createTable:
-          tableName: repositories
+          tableName: projects
           columns:
           - column:
               name: id
@@ -47,8 +47,93 @@ databaseChangeLog:
               constraints:
                 nullable: false
           - column:
+              name: description
+              type: varchar(4096)
+              constraints:
+                nullable: false
+
+      - createTable:
+          tableName: keystore
+          columns:
+          - column:
+              name: id
+              type: int
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                nullable: false
+          - column:
+              name: project_id
+              type: int
+              constraints:
+                nullable: false
+          - column:
+              name: name
+              type: varchar(50)
+              constraints:
+                nullable: false
+          - column:
+              name: private_key
+              type: blob
+              constraints:
+                nullable: true
+          - column:
+              name: public_key
+              type: blob
+              constraints:
+                nullable: true
+
+      - addForeignKeyConstraint:
+          baseColumnNames: project_id
+          baseTableName: keystore
+          constraintName: fk_key_project
+          onDelete: CASCADE
+          referencedTableName: projects
+          referencedColumnNames: id
+
+      - createTable:
+          tableName: repositories
+          columns:
+          - column:
+              name: id
+              type: int
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                nullable: false
+          - column:
+              name: project_id
+              type: int
+              constraints:
+                nullable: false
+          - column:
+              name: name
+              type: varchar(50)
+              constraints:
+                nullable: false
+          - column:
+              name: key_id
+              type: int
+              constraints:
+                nullable: true
+          - column:
               name: url
               type: varchar(255)
               constraints:
                 nullable: false
 
+      - addForeignKeyConstraint:
+          baseColumnNames: project_id
+          baseTableName: repositories
+          constraintName: fk_repository_project
+          onDelete: CASCADE
+          referencedTableName: projects
+          referencedColumnNames: id
+
+      - addForeignKeyConstraint:
+          baseColumnNames: project_id, key_id
+          baseTableName: repositories
+          constraintName: fk_repository_key
+          onDelete: CASCADE
+          referencedTableName: keystore
+          referencedColumnNames: project_id, id

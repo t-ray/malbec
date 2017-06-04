@@ -38,10 +38,10 @@ Within a project, there are several functional notions:
 * Tasks 
 
 #### Repositories
-A Repository is a collection of ansible tasks or playbooks that is stored remotely. Initially, only git repos will be supported. A project can have only a single repo.
+A Repository is a collection of ansible tasks or playbooks that is stored remotely. Initially, only git repos will be supported. A project may have multiple repositories defined.
 
-#### Key Stores
-A key store provides storage for ssh keys, used to checkout/update repos, and used when executing ansible remotely. A project can have only a single key store.
+#### Keys
+Each project defines zero or more keys to be used when fetching from remote repos, or for when executing playbooks.
 
 #### Inventory
 The user can define custom inventory directly within a given project. Alternatively, inventory stored within the repo may be used. A project may have multiple inventory defined.

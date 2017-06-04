@@ -1,0 +1,295 @@
+{
+	"variables": [],
+	"info": {
+		"name": "malbec",
+		"_postman_id": "fb7fec48-8021-e8e7-fc4a-7c10d5fbf1ee",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "installations",
+			"description": "",
+			"item": [
+				{
+					"name": "List Installations",
+					"request": {
+						"url": "http://localhost:8080/installations",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Installation by ID",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/installations/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"installations",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add Installation",
+					"request": {
+						"url": "http://localhost:8080/installations/add",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"first-installation\",\n\t\"version\": \"2.2\", \n\t\"path\":\"/bin/ansible\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Installation",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/installations/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"installations",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "id"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"fooEdited\",\n\t\"version\": \"2.2\", \n\t\"path\":\"/bin/ansible\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Installation",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/installations/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"installations",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "id"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"description": "",
+			"item": [
+				{
+					"name": "List projects",
+					"request": {
+						"url": "http://localhost:8080/projects",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project by ID",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/projects/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add Project",
+					"request": {
+						"url": "http://localhost:8080/projects/add",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"foo\",\n\t\"description\": \"description\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Project",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/projects/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "id"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"foo\",\n\t\"description\": \"modified\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/projects/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "id"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

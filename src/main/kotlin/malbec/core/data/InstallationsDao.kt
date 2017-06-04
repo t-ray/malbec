@@ -1,6 +1,9 @@
 package malbec.core.data
 
+import malbec.core.biz.ObjectNotFoundException
 import malbec.core.domain.FileInstallation
+import org.funktionale.either.Either
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Component
@@ -15,10 +18,18 @@ open class InstallationsDao(val template: NamedParameterJdbcTemplate) {
     /**
      * Finds a single FileInstallation by its id
      */
-    fun find(id: Int): FileInstallation =
-      template.queryForObject("SELECT id, name, path, version FROM installations WHERE id = :id",
-                              mapIntIdParameter(id),
-                              ::mapInstallationRow)
+    fun find(id: Int): Either<ObjectNotFoundException, FileInstallation> {
+        return try {
+            val installation = template.queryForObject(
+              "SELECT id, name, path, version FROM installations WHERE id = :id",
+              mapIntIdParameter(id),
+              ::mapInstallationRow)
+            Either.right(installation)
+        }
+        catch (e: EmptyResultDataAccessException) {
+            Either.left(ObjectNotFoundException("No installation found by id $id"))
+        }
+    }   //END find
 
     /**
      * Returns all known FileInstallation instances
@@ -41,18 +52,28 @@ open class InstallationsDao(val template: NamedParameterJdbcTemplate) {
     /**
      * Updates a single record
      */
-    fun update(item: FileInstallation) {
+    fun update(item: FileInstallation): Either<ObjectNotFoundException, FileInstallation> {
         val sql = "UPDATE installations SET name=:name, path=:path, version=:version WHERE " +
           "id = :id"
-        template.update(sql, mapInstallationParameters(item))
+        val modified = template.update(sql, mapInstallationParameters(item))
+
+        return when {
+            modified > 0 -> Either.right(item)
+            else -> Either.left(ObjectNotFoundException("No installation found by id ${item.id}"))
+        }
     }   //END update
 
     /**
      * Deletes a single record
      */
-    fun delete(id: Int) {
+    fun delete(id: Int): Either<ObjectNotFoundException, Int> {
         val sql = "DELETE FROM installations WHERE id=:id"
-        template.update(sql, mapIntIdParameter(id))
+        val modified = template.update(sql, mapIntIdParameter(id))
+
+        return when {
+            modified > 0 -> Either.right(id)
+            else -> Either.left(ObjectNotFoundException("No installation found by id $id"))
+        }
     }   //END delete
 
 }   //END InstallationsDao

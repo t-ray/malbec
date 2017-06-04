@@ -1,5 +1,6 @@
 package malbec.core.domain
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.io.File
 import javax.validation.constraints.Size
 
@@ -7,11 +8,12 @@ import javax.validation.constraints.Size
  * Represents the location of an ansible installation
  * somewhere on the system
  */
-sealed class AnsibleInstallation(val command: String) {
+sealed class AnsibleInstallation(@JsonIgnore val command: String) {
 
     /**
      * The actual file on the file system that represents the ansible playbook command
      */
+    @JsonIgnore
     val executable = File(command)
 
 }   //END AnsibleInstallation

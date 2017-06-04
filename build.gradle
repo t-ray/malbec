@@ -18,11 +18,11 @@ defaultTasks 'run'
 repositories {
     mavenCentral()
 
-    maven {
-        url "http://dl.bintray.com/kotlin/kotlin"
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
-    }
+    maven { url "http://dl.bintray.com/kotlin/kotlin" }
+    maven { url "http://dl.bintray.com/kotlin/exposed" }
+    maven { url "https://repo.spring.io/milestone" }
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "http://jcenter.bintray.com" }
 }
 
 dependencies {
@@ -32,6 +32,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-configuration-processor"
     compile "org.springframework:spring-jdbc"
 
+    compile "org.funktionale:funktionale-all:1.0.1"
+    compile "org.jetbrains.exposed:exposed:0.8"
     compile "mysql:mysql-connector-java"
     // compile "org.hsqldb:hsqldb"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"

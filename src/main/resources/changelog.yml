@@ -73,13 +73,23 @@ databaseChangeLog:
               constraints:
                 nullable: false
           - column:
+              name: username
+              type: varchar(50)
+              constraints:
+                nullable: true
+          - column:
+              name: passphrase
+              type: varchar(255)
+              constraints:
+                nullable: true
+          - column:
               name: private_key
-              type: blob
+              type: text
               constraints:
                 nullable: true
           - column:
               name: public_key
-              type: blob
+              type: text
               constraints:
                 nullable: true
 

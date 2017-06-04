@@ -150,6 +150,205 @@
 			]
 		},
 		{
+			"name": "keys",
+			"description": "",
+			"item": [
+				{
+					"name": "List keys for Project",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/projects/:projectId/keys",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								":projectId",
+								"keys"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "projectId"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Key by ID",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/projects/:projectId/keys/:keyId",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								":projectId",
+								"keys",
+								":keyId"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "projectId"
+								},
+								{
+									"value": "1",
+									"id": "keyId"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add Key for Project",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/projects/:projectId/keys/add",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								":projectId",
+								"keys",
+								"add"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "projectId"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"key1\",\n\t\"username\": \"user\", \n\t\"passphrase\": \"phrase\", \n\t\"publicKey\": \"pub\", \n\t\"privateKey\": \"priv\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Key",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/projects/:projectId/keys/:keyId",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								":projectId",
+								"keys",
+								":keyId"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "projectId"
+								},
+								{
+									"value": "1",
+									"id": "keyId"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"key1\",\n\t\"username\": \"user\", \n\t\"passphrase\": null, \n\t\"publicKey\": \"pub\", \n\t\"privateKey\": \"priv\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Key",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/projects/:projectId/keys/:keyId",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								":projectId",
+								"keys",
+								":keyId"
+							],
+							"variable": [
+								{
+									"value": "1",
+									"id": "projectId"
+								},
+								{
+									"value": "1",
+									"id": "keyId"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "projects",
 			"description": "",
 			"item": [

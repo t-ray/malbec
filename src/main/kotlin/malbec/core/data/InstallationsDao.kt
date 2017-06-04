@@ -10,7 +10,15 @@ import java.sql.ResultSet
  * Simple DAO that provides CRUD operations for FileInstallation objects
  */
 @Component
-open class InstallationsDAO(val template: NamedParameterJdbcTemplate) {
+open class InstallationsDao(val template: NamedParameterJdbcTemplate) {
+
+    /**
+     * Finds a single FileInstallation by its id
+     */
+    fun find(id: Int): FileInstallation =
+      template.queryForObject("SELECT id, name, path, version FROM installations WHERE id = :id",
+                              mapIntIdParameter(id),
+                              ::mapInstallationRow)
 
     /**
      * Returns all known FileInstallation instances
@@ -42,12 +50,12 @@ open class InstallationsDAO(val template: NamedParameterJdbcTemplate) {
     /**
      * Deletes a single record
      */
-    fun delete(item: FileInstallation) {
+    fun delete(id: Int) {
         val sql = "DELETE FROM installations WHERE id=:id"
-        template.update(sql, mapInstallationParameters(item))
+        template.update(sql, mapIntIdParameter(id))
     }   //END delete
 
-}   //END InstallationsDAO
+}   //END InstallationsDao
 
 /**
  * Reads a single row into a FileInstallation object

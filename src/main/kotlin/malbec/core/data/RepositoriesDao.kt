@@ -11,6 +11,14 @@ import java.sql.ResultSet
 open class RepositoriesDao(val template: NamedParameterJdbcTemplate) {
 
     /**
+     * Finds a single Repository by its id
+     */
+    fun find(id: Int): Repository =
+      template.queryForObject("SELECT id, name, url FROM repositories WHERE id = :id",
+                              mapIntIdParameter(id),
+                              ::mapRepositoryRow)
+
+    /**
      * Returns all known FileInstallation instances
      */
     fun selectAll(): List<Repository> {
@@ -40,9 +48,9 @@ open class RepositoriesDao(val template: NamedParameterJdbcTemplate) {
     /**
      * Deletes a single record
      */
-    fun delete(item: Repository) {
+    fun delete(id: Int) {
         val sql = "DELETE FROM repositories WHERE id=:id"
-        template.update(sql, mapRepositoryParameters(item))
+        template.update(sql, mapIntIdParameter(id))
     }   //END delete
 
 }   //END RepositoriesDao

@@ -29,7 +29,7 @@ data class FileInstallation(
    * How the installation is referenced in the user interface
    */
   @get:Size(min = 1, max = 50)
-  val name: String,
+  val name: String = "",
 
   /**
    * The version of the installation; just used for informational purposes. Optional.
@@ -41,7 +41,7 @@ data class FileInstallation(
    * The fully path to the ansible playbook command on the host. Required.
    */
   @get:Size(min = 1, max = 50)
-  val path: String) : AnsibleInstallation(path)
+  val path: String = "") : AnsibleInstallation(path)
 
 /**
  * Installation that assumes the ansible-playbook command is already present on the path

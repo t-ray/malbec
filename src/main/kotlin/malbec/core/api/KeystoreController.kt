@@ -29,10 +29,10 @@ open class KeystoreController(
     }   //END add
 
     @PutMapping("/{projectId}/keys/{id}")
-    fun edit(@PathVariable id: Int, @RequestBody item: SshKey): SshKey {
+    fun edit(@PathVariable projectId: Int, @PathVariable id: Int, @RequestBody item: SshKey): SshKey {
         println("Editing item, id=$id, body=$item")
 
-        val edited = keystoreService.update(item.copy(id = id))
+        val edited = keystoreService.update(item.copy(id = id, projectId = projectId))
         return when {
             edited.isRight() -> edited.right().get()
             else -> throw edited.left().get()
@@ -40,7 +40,7 @@ open class KeystoreController(
     }   //END edit
 
     @DeleteMapping("/{projectId}/keys/{id}")
-    fun delete(@PathVariable id: Int): Int {
+    fun delete(@PathVariable projectId: Int, @PathVariable id: Int): Int {
         println("deleting $id")
 
         val deleted = keystoreService.delete(id)

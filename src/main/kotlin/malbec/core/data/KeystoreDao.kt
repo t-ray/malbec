@@ -63,7 +63,7 @@ open class KeystoreDao(val template: NamedParameterJdbcTemplate) {
      */
     fun update(item: SshKey): Either<ObjectNotFoundException, SshKey> {
         val sql = "UPDATE keystore SET name=:name, username=:username, passphrase=:passphrase, " +
-          "public_key=:pubkey, private_key=:privkey WHERE id = :id"
+          "public_key=:pubkey, private_key=:privkey WHERE id = :id AND project_id = :pid"
         val modified = template.update(sql, mapKeyParameters(item))
 
         return when {
